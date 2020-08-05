@@ -1,16 +1,6 @@
-<html>
-  <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>计算机网络 | Gridea</title>
-<link rel="shortcut icon" href="https://ZhouYingK.github.io/favicon.ico?v=1596622845738">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://ZhouYingK.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="计算机网络 | Gridea - Atom Feed" href="https://ZhouYingK.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
-
-
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="1 基础知识
 1.1 计算机网络的概念、组成、功能、分类
 
@@ -22,82 +12,216 @@
 功能
 数据通讯、资源共享、分布式处理、提高可..." />
     <meta name="keywords" content="" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-  </head>
-  <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://ZhouYingK.github.io">
-  <img class="avatar" src="https://ZhouYingK.github.io/images/avatar.png?v=1596622845738" alt="">
-  </a>
-  <h1 class="site-title">
-    Gridea
-  </h1>
-  <p class="site-description">
-    温故而知新
-  </p>
-  <div class="menu-container">
+    <link rel="stylesheet" href="https://ZhouYingK.github.io/media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ZhouYingK.github.io/styles/main.css">
     
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              计算机网络
-            </h2>
-            <div class="post-info">
-              <span>
-                2020-08-05
-              </span>
-              <span>
-                7 min read
-              </span>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/dracula.min.css">
               
-            </div>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <script src="https://ZhouYingK.github.io/media/js/clipboard.min.js"></script>
+    <link rel="stylesheet" href="https://ZhouYingK.github.io/media/css/live2d.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <!-- 数学公式 -->
+    
+    <title>ZhouYing.blog</title>
+    
+    <style>
+        .markdownIt-TOC {
+            padding-left: 2px;
+            width: 100%;
+        }
+        .markdownIt-TOC li{
+            padding-left: 2%;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <!-- 响应式布局，针对PC端内容显示 -->
+    <div id="content">
+        <div class="nav-large">
+            <div class="row">
+                <div class="side"><head>
+    <meta name="description" content="温故而知新" />
+    <link rel="stylesheet" href="https://ZhouYingK.github.io/media/css/bootstrap.min.css">
+</head>
+
+
+<body>
+    
+
+
+
+    
+</body>
+<script>
+    //-------------------------------------------------搜索
+    // 获取搜索框、搜索按钮、清空搜索、结果输出对应的元素
+    var searchInput = document.querySelector('.search-input');
+    var searchResults = document.querySelector('.search-results');
+
+    // 申明保存文章的标题、链接、内容的数组变量
+    var searchValue = '',
+        arrItems = [],
+        arrLinks = [],
+        arrTitles = [],
+        arrResults = [],
+        indexItem = [],
+        itemLength = 0;
+    var tmpDiv = document.createElement('div');
+    tmpDiv.className = 'result-item';
+
+    // ajax 的兼容写法
+    var xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            xml = xhr.responseXML;
+            arrItems = xml.getElementsByTagName('entry');
+            itemLength = arrItems.length;
+            // 遍历并保存所有文章对应的标题、链接、内容到对应的数组中
+            // 同时过滤掉 HTML 标签
+            for (i = 0; i < itemLength; i++) {
+                var link = arrItems[i].getElementsByTagName('link')[0];
+                arrLinks[i] = link.getAttribute("href");
+                arrTitles[i] = arrItems[i].getElementsByTagName('title')[0].
+                childNodes[0].nodeValue.replace(/<.*?>/g, '');
+            }
+        }
+    }
+
+    // 开始获取根目录下 feed.xml 文件内的数据
+    xhr.open('get', '/atom.xml', true);
+    xhr.send();
+
+
+
+    // 输入框内容变化后就开始匹配，可以不用点按钮
+    // 经测试，onkeydown, onchange 等方法效果不太理想，
+    // 存在输入延迟等问题，最后发现触发 input 事件最理想，
+    // 并且可以处理中文输入法拼写的变化
+    searchInput.oninput = function () {
+        setTimeout(searchConfirm, 0);
+    }
+    searchInput.onfocus = function () {
+        searchResults.style.display = 'block';
+    }
+
+    function searchConfirm() {
+        if (searchInput.value == '') {
+            searchResults.style.display = 'none';
+        } else if (searchInput.value.search(/^\s+$/) >= 0) {
+            // 检测输入值全是空白的情况
+            searchInit();
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerText = '请输入有效内容...';
+            searchResults.appendChild(itemDiv);
+        } else {
+            // 合法输入值的情况
+            searchInit();
+            searchValue = searchInput.value;
+            // 在标题、内容中查找
+            searchMatching(arrTitles, searchValue);
+        }
+    }
+
+    // 每次搜索完成后的初始化
+    function searchInit() {
+        arrResults = [];
+        indexItem = [];
+        searchResults.innerHTML = '';
+        searchResults.style.display = 'block';
+    }
+
+    function searchMatching(arr1, input) {
+        // 忽略输入大小写
+        input = new RegExp(input, 'i');
+        // 在所有文章标题、内容中匹配查询值
+        for (i = 0; i < itemLength; i++) {
+            if (arr1[i].search(input) !== -1) {
+                var arr = arr1;
+                indexItem.push(i); // 保存匹配值的索引
+                var indexContent = arr[i].search(input);
+                // 此时 input 为 RegExp 格式 /input/i，转换为原 input 字符串长度
+                var l = input.toString().length - 3;
+                var step = 10;
+
+                // 将匹配到内容的地方进行黄色标记，并包括周围一定数量的文本
+                arrResults.push(arr[i].slice(indexContent - step, indexContent));
+            }
+        }
+
+        // 输出总共匹配到的数目
+        var totalDiv = tmpDiv.cloneNode(true);
+        totalDiv.innerHTML = '<b>总匹配：' + indexItem.length + ' 项<hr></b>';
+        searchResults.appendChild(totalDiv);
+
+        // 未匹配到内容的情况
+        if (indexItem.length == 0) {
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerText = '未匹配到内容...';
+            searchResults.appendChild(itemDiv);
+        }
+
+        // 将所有匹配内容进行组合
+        for (i = 0; i < arrResults.length; i++) {
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerHTML = '<b>[' + arrTitles[indexItem[i]] +
+                ']</b><p>' + arrResults[i] + "</p><hr />";
+            itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[' + i + ']])');
+            searchResults.appendChild(itemDiv);
+        }
+    }
+
+    function changeHref(href) {
+        location.href = href;
+    }
+
+    function showqq() {
+        var qq = document.getElementById("qq").innerHTML;
+        if (qq != '')
+            alert("博主的QQ联系方式为：" + qq);
+        else
+            alert("博主暂未设置QQ联系方式");
+    }
+</script></div>
+    
+    <div id="main" class="col-xs-12 col-sm-7" style="width:50%;margin-top:50px;left:27%">
+        <link rel="stylesheet" href="https://ZhouYingK.github.io/media/css/font-awesome.css">
+<style>
+
+</style>
+
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow">
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h1 id="1-基础知识">1 基础知识</h1>
+            <div class="postdetailimg" style="width:100%;overflow: hidden;display: none">
+                
+                <img src="" class="postimage">
+                
+            </div>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2020-08-05</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 7 min read</div>
+            <div class="posttag">
+                
+            </div>
+        </div>
+        
+        <div id="texttitle" style="text-align: center">
+            <h2>计算机网络</h2>
+            <!-- id 将作为查询条件 -->
+            <div id="pl" style="display:none">https://ZhouYingK.github.io/post/ji-suan-ji-wang-luo/</div>
+            <div id="rootaddr" style="display:none">https://ZhouYingK.github.io</div>
+            <span id="hotnum" class="leancloud_visitors" data-flag-title="计算机网络">
+                <h4 class="readercount">热度🔥: <i class="leancloud-visitors-count">loading...</i></h4>
+            </span>
+        </div>
+        <div class="text ">
+            <h1 id="1-基础知识">1 基础知识</h1>
 <h2 id="11-计算机网络的概念-组成-功能-分类">1.1 计算机网络的概念、组成、功能、分类</h2>
 <ol>
 <li>
@@ -392,9 +516,61 @@
 </li>
 </ol>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
+        </div>
+        
+        
+    </div>
+    </div>
+</body>
+<script>
+    var t_img; // 定时�?
+    var isLoad = true; // 控制变量
+    isImgLoad(function () {
+        // 加载完成
+        $('.postdetailimg').css("display", "block");
+    });
+    // 判断图片加载的函�?
+    function isImgLoad(callback) {
+        // 注意我的图片类名都是cover，因为我�?需要�?�理cover。其它图片可以不管�?
+        // 查找所有封面图，迭代�?�理
+        $('.postdetailimg').each(function () {
+            // 找到�?0就将isLoad设为false，并退出each
+            if (this.height === 0) {
+                isLoad = false;
+                return false;
+            }
+        });
+        // 为true，没有发现为0的。加载完�?
+        if (isLoad) {
+            clearTimeout(t_img); // 清除定时�?
+            // 回调函数
+            callback();
+            // 为false，因为找到了没有加载完成的图，将调用定时器递归
+        } else {
+            isLoad = true;
+            t_img = setTimeout(function () {
+                isImgLoad(callback); // 递归�?�?
+            }, 500); // 我这里�?�置的是500�?秒就�?描一次，�?以自己调�?
+        }
+    }
+
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+        <div name="comment" style="background: white">
+            <div class="commentcontainer">
+                
+                <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
+                
+            </div>
+        </div>
+    </div>
+     
+                <div class="toc-container">
+                    <ul class="markdownIt-TOC">
 <li><a href="#1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">1 基础知识</a>
 <ul>
 <li><a href="#11-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%A6%82%E5%BF%B5-%E7%BB%84%E6%88%90-%E5%8A%9F%E8%83%BD-%E5%88%86%E7%B1%BB">1.1 计算机网络的概念、组成、功能、分类</a></li>
@@ -426,64 +602,558 @@
 </li>
 </ul>
 
-              </div>
-            </div>
-          </article>
-        </div>
-
-        
-
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://ZhouYingK.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
-      </div>
     </div>
+    </div>
+    </div>
+    <div class="toggleContainer">
+        <div class="toggle">
+            <i class="fas fa-angle-double-up"></i>
+        </div>
+    </div>
+    <div id="bg">
+    </div>
+    <div id="bgchoice" style="display: none"></div>
+    
+    <div id="bgurl" style="display:none"></div>
+       
+    </div>
+    <!-- 响应式布局，针对手机端内容显示 -->
+    <div class="nav-small">
+        <head>
+  <!-- 引入Bootstrap核心样式文件 -->
+  <link rel="stylesheet" href="https://ZhouYingK.github.io/media/css/bootstrap.min.css">
+</head>
 
-    <script>
-      hljs.initHighlightingOnLoad()
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#barmenu" aria-expanded="false" id="barbutton">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="https://ZhouYingK.github.io">ZhouYing.blog&nbsp;&nbsp;|</a>
+      </div>
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="barmenu">
+        <ul class="nav navbar-nav">
+          
+          
+          <li>
+            <a href="/">
+              首页
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/archives">
+              归档
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/tags">
+              标签
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/post/about">
+              关于
+            </a>
+          </li>
+          
+          
+          
+          
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
+  <!-- 引入jQuery核心js文件 -->
+  <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+  var btstate = false;
+  var bt = $("#barbutton");
+  var bm = $("#barmenu");
+  bt.click(function(){
+    dropdown();
+  })
+  function dropdown(){
+    console.log(btstate);
+    //下拉
+    if(btstate==false){
+      bt.removeClass("collapsed");
+      bt.attr("aria-expanded","true");
+      bm.attr("aria-expanded","true")
+      bm.fadeIn(700);
+      btstate = true;
+    }
+    else{
+      bt.addClass("collapsed");
+      bt.attr("aria-expanded","false");
+      bm.removeClass("in");
+      bm.hide();
+      bm.attr("aria-expanded","false");
+      btstate = false;
+    }
+  }
+  </script> 
+</body>
+    <div style="margin-top:30px"></div>
+    <link rel="stylesheet" href="https://ZhouYingK.github.io/media/css/font-awesome.css">
+<style>
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
+</style>
+
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow">
+            
+            <div class="postdetailimg" style="width:100%;overflow: hidden;display: none">
+                
+                <img src="" class="postimage">
+                
+            </div>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2020-08-05</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 7 min read</div>
+            <div class="posttag">
+                
+            </div>
+        </div>
+        
+        <div id="texttitle" style="text-align: center">
+            <h2>计算机网络</h2>
+            <!-- id 将作为查询条件 -->
+            <div id="pl" style="display:none">https://ZhouYingK.github.io/post/ji-suan-ji-wang-luo/</div>
+            <div id="rootaddr" style="display:none">https://ZhouYingK.github.io</div>
+            <span id="hotnum" class="leancloud_visitors" data-flag-title="计算机网络">
+                <h4 class="readercount">热度🔥: <i class="leancloud-visitors-count">loading...</i></h4>
+            </span>
+        </div>
+        <div class="text ">
+            <h1 id="1-基础知识">1 基础知识</h1>
+<h2 id="11-计算机网络的概念-组成-功能-分类">1.1 计算机网络的概念、组成、功能、分类</h2>
+<ol>
+<li>
+<p>概念</p>
+<p>计算机网络一个将分散的、具有独立功能的<strong>计算机系统</strong>，通过<strong>通讯设备</strong>与<strong>线路</strong>连接起来，由功能完善的<strong>软件</strong>实现<strong>资源共享</strong>和<strong>信息传递</strong>的系统</p>
+</li>
+<li>
+<p>功能</p>
+<p><strong>数据通讯</strong>、资源共享、分布式处理、提高可靠性、负载均衡</p>
+</li>
+<li>
+<p>组成</p>
+<ul>
+<li>
+<p>组成部分</p>
+<p>硬件、软件、协议</p>
+</li>
+<li>
+<p>工作方式</p>
+<p>边缘部分：用户直接使用</p>
+<p>核心部分：为边缘部分服务</p>
+</li>
+<li>
+<p>功能组成</p>
+<p>通信子网：实现数据通讯————————————物理层、数据链路层、网络层</p>
+<p>资源子网：实现资源共享/数据通讯---------传输层、会话层、表示层、应用层</p>
+</li>
+</ul>
+</li>
+<li>
+<p>分类</p>
+<ul>
+<li>
+<p>按分部范围分</p>
+<p>广域网、城域网、局域网、个人区域网</p>
+</li>
+<li>
+<p>按使用者分</p>
+<p>公用网、专用网</p>
+</li>
+<li>
+<p>按交换技术分</p>
+<p>电路交换、报文交换、分组交换</p>
+</li>
+<li>
+<p>按拓扑结构分</p>
+<p>总线型、星型、环形、网状型</p>
+</li>
+<li>
+<p>按传输技术分</p>
+<p>广播式网络、点对点网络</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id=""></h2>
+<h2 id="12-性能指标">1.2  ☆性能指标</h2>
+<ol>
+<li>
+<p>速率、带宽、吞吐量</p>
+<p>速率即<strong>数据率</strong>或称<strong>数据传输率</strong>或<strong>比特率</strong></p>
+<p>带宽用来表示网络的通信线路传送数据的能力</p>
+<p>吞吐量表示在单位时间内通过某个网络的数据量</p>
+</li>
+</ol>
+<h2 id="-2"></h2>
+<ol start="2">
+<li>时延、时延带宽积、往返时间、利用率</li>
+</ol>
+<h2 id="13-分层结构">1.3 ☆分层结构</h2>
+<h2 id="14-osi参考模型">1.4 ☆OSI参考模型</h2>
+<ol>
+<li>
+<p>通信过程</p>
+<figure data-type="image" tabindex="1"><img src="https://images.cnblogs.com/cnblogs_com/zhouying/1820716/o_200804071721OSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B.png" alt="img" loading="lazy"></figure>
+</li>
+<li>
+<p>七层模型</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">七层模型</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">应用层</td>
+<td style="text-align:center">所有能和用户交互产生网络流量的程序</td>
+</tr>
+<tr>
+<td style="text-align:center">表示层</td>
+<td style="text-align:center">用于处理在两个通信系统中交换信息的表示方式</td>
+</tr>
+<tr>
+<td style="text-align:center">会话层</td>
+<td style="text-align:center">向表示层实体/用户进程提供建立连接并在连接上有序地传输数据</td>
+</tr>
+<tr>
+<td style="text-align:center">传输层</td>
+<td style="text-align:center">负责主机中两个进程的通信</td>
+</tr>
+<tr>
+<td style="text-align:center">网络层</td>
+<td style="text-align:center">把分组从源端传到目的端，为分组交换网上的不同主机提供通信服务。网络层传输单位是数据报</td>
+</tr>
+<tr>
+<td style="text-align:center">数据链路层</td>
+<td style="text-align:center">将网络层传下来的数据报组装成帧</td>
+</tr>
+<tr>
+<td style="text-align:center">物理层</td>
+<td style="text-align:center">定义物理设备的标准</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<h2 id="15-tcpip参考模型和5层模型">1.5 ☆TCP/IP参考模型和5层模型</h2>
+<ol>
+<li>
+<p>TCP/IP</p>
+<p>应用层、传输层、网际层、网络接口层</p>
+</li>
+<li>
+<p>5层模型</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">七层模型</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">应用层</td>
+<td style="text-align:center">支持各种网络应用</td>
+</tr>
+<tr>
+<td style="text-align:center">传输层</td>
+<td style="text-align:center">进程-进程的输出传输</td>
+</tr>
+<tr>
+<td style="text-align:center">网络层</td>
+<td style="text-align:center">源主机到目的主机的数据分组路由与转发</td>
+</tr>
+<tr>
+<td style="text-align:center">数据链路层</td>
+<td style="text-align:center">将网络层传下来的数据报组装成帧</td>
+</tr>
+<tr>
+<td style="text-align:center">物理层</td>
+<td style="text-align:center">比特传输</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<h1 id="2-物理层">2 物理层</h1>
+<h2 id="21-物理层基本概念">2.1 物理层基本概念</h2>
+<p>物理层解决如何在连接各种计算机的传输媒体上的<strong>传输数据比特流</strong></p>
+<p>确定与传输媒体接口有关的特性:<strong>机械特性</strong>、<strong>电气特性</strong>、<strong>功能特性</strong>、<strong>规程特性</strong></p>
+<h2 id="22-数据通信基础知识">2.2 数据通信基础知识</h2>
+<ol>
+<li>
+<p>三种通信方式</p>
+<p>单工、半双工、全双工</p>
+</li>
+<li>
+<p>数据传输方式</p>
+<p>串行、并行</p>
+</li>
+<li>
+<p>同步&amp;异步</p>
+<p>同步：在传输数据时，需先发送1个或多个同步字符</p>
+<p>异步：发送方可以在任何时候发送数据</p>
+</li>
+</ol>
+<h2 id="23-码元-速率-波特">2.3 码元、速率、波特</h2>
+<p>码元是指用一个<strong>固定时长</strong>的<strong>信号波形</strong>，代表不同离散数值的基本波形。当码元的离散状态有M个时</p>
+<p>此时码元为M进制码元</p>
+<p>速率表示单位时间内传输的数据量。可以用<strong>码元传输速率</strong>和<strong>信息传输速率</strong>表示。</p>
+<h2 id="24-奈氏准则和香农定理">2.4 奈氏准则和香农定理</h2>
+<ol>
+<li>
+<p>奈氏准则</p>
+<p>在理想低通条件下，为了避免码间干扰，极限码元传输速率为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>W</mi><mtext> </mtext><mi>b</mi><mi>a</mi><mi>u</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">2W\  baud</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace"> </span><span class="mord mathdefault">b</span><span class="mord mathdefault">a</span><span class="mord mathdefault">u</span><span class="mord mathdefault">d</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span>是信道带宽</p>
+</li>
+<li>
+<p>香农定理</p>
+<p>信道的极限数据传输速率<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mo>(</mo><mn>1</mn><mo>+</mo><mi>S</mi><mi mathvariant="normal">/</mi><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">Wlog_2(1+S/N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span></p>
+</li>
+</ol>
+<h2 id="25-编码调制">2.5 编码&amp;调制</h2>
+<p>编码：将信号转成数字信号</p>
+<p>调制：将信号转成模拟信号</p>
+<h2 id="26-物理层传输介质">2.6 物理层传输介质</h2>
+<p>导向性传输介质</p>
+<p>非导向性传输介质</p>
+<h2 id="26-物理层设备">2.6 物理层设备</h2>
+<p>中继器：对信号进行再生和还原</p>
+<p>集线器：对信号进行再生放大转发</p>
+<h1 id="3-数据链路层">3 数据链路层</h1>
+<h2 id="31-基本概念">3.1 基本概念</h2>
+<p>负责通过一条链路从一个节点向另一个物理链路直接相连的相邻节点传送数据报</p>
+<h2 id="32-封装成帧透明传输">3.2 封装成帧&amp;透明传输</h2>
+<ol>
+<li>
+<p>封装成帧</p>
+<p>在一段数据的前后部分添加首部和尾部，这样就构成了一个帧。接收端在收到了物理层上交的比特流后，就能根据首部和尾部的标记，从收到的比特流中识别帧的开始和结束</p>
+</li>
+<li>
+<p>透明传输</p>
+<p>不管所传数据是什么样的比特组合，都应当能够在链路上传送</p>
+</li>
+<li>
+<p>封装成帧方法</p>
+<ul>
+<li>
+<p>字符计数法</p>
+<p>帧首部使用一个计数字段来标明帧内字符数</p>
+</li>
+<li>
+<p>字符填充法</p>
+<p>字节填充法是采用一些特定的字符来定界一帧的开始和结束的方法，当标志字节出现在待传送的数据信息当中时，就会被误认为是帧的边界。解决这一问题的一种方法是，发送端的数据链路层在出现标志字节的数据段前插入另一个转义字符，而在接收端的数据链路层在把数据送往网络层之前删除这个插入的转义字符。这种技术称为字节填充(byte stuffing)</p>
+</li>
+<li>
+<p>零比特填充法</p>
+<p>在发送端，扫描整个信息字段，只要连续5个1，就立即填入1个0</p>
+<p>在接收端，发送连续5个1时，就把后面的0删除</p>
+</li>
+<li>
+<p>违规编码法</p>
+<p>用两个编码中不会出现的电平方式来标志起始和结束</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="33-差错控制">3.3 差错控制</h2>
+<ol>
+<li>
+<p>差错来源</p>
+<p>传输中的差错都是由于噪声引起的，主要分为两种</p>
+<ul>
+<li>
+<p>全局性 由线路本身电气特性所产生的随机噪声</p>
+<p>​			 解决方法：提高信噪比</p>
+</li>
+<li>
+<p>局部性 外界特定的短暂原因所造成的冲击噪声</p>
+<p>​			 解决方法：利用编码技术</p>
+</li>
+</ul>
+</li>
+<li>
+<p>比特错差错控制</p>
+<ul>
+<li>
+<p>检错编码</p>
+<p>奇偶校验、循环冗余码CRC</p>
+</li>
+<li>
+<p>纠错编码</p>
+<p>海明码</p>
+</li>
+</ul>
+</li>
+<li>
+<p>CRC计算方法</p>
+<ul>
+<li>生成多项式阶数为R，信息码左移R位</li>
+<li>用生成多项式（二进制数）对信息码做除，得到R位的余数</li>
+</ul>
+</li>
+<li>
+<p>海明码</p>
+<ul>
+<li>
+<p>确定校验码位数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>r</mi></msup><mo>&gt;</mo><mo>=</mo><mi>k</mi><mo>+</mo><mi>r</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^r&gt;=k+r+1
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7534919999999999em;vertical-align:-0.0391em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>为要发送的数据位数</p>
+</li>
+<li>
+<p>确定校验码和数据的位置</p>
+<p>校验码分别放在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>i</mi></msup></mrow><annotation encoding="application/x-tex">2^i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.824664em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span></span></span></span></span></span></span>的位置上(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>2...</mn></mrow><annotation encoding="application/x-tex">i=0,1,2...</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span></span></span></span>)</p>
+</li>
+<li>
+<p>求出校验码的值</p>
+</li>
+</ul>
+</li>
+</ol>
+
+        </div>
+        
+        
+    </div>
+    </div>
+</body>
+<script>
+    var t_img; // 定时�?
+    var isLoad = true; // 控制变量
+    isImgLoad(function () {
+        // 加载完成
+        $('.postdetailimg').css("display", "block");
+    });
+    // 判断图片加载的函�?
+    function isImgLoad(callback) {
+        // 注意我的图片类名都是cover，因为我�?需要�?�理cover。其它图片可以不管�?
+        // 查找所有封面图，迭代�?�理
+        $('.postdetailimg').each(function () {
+            // 找到�?0就将isLoad设为false，并退出each
+            if (this.height === 0) {
+                isLoad = false;
+                return false;
             }
-          } else {
-            link.classList.remove("current");
-          }
         });
-      });
+        // 为true，没有发现为0的。加载完�?
+        if (isLoad) {
+            clearTimeout(t_img); // 清除定时�?
+            // 回调函数
+            callback();
+            // 为false，因为找到了没有加载完成的图，将调用定时器递归
+        } else {
+            isLoad = true;
+            t_img = setTimeout(function () {
+                isImgLoad(callback); // 递归�?�?
+            }, 500); // 我这里�?�置的是500�?秒就�?描一次，�?以自己调�?
+        }
+    }
 
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+    <div name="comment" style="background: white;margin-top:100px">
+        <div class="commentcontainer">
+            
+            <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
+            
+        </div>
+    </div>
+    </div>
+    <div id="landlord">
+        <div class="message" style="opacity:0"></div>
+        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
+    </div>
+    <div id="codeCopyText" style="display: none"></div>
+    <div id="domainname" style="display:none">https://ZhouYingK.github.io</div>
+    </body>
+    <script src="https://ZhouYingK.github.io/media/js/post.js"></script>
+    <script>
+        //寻找所有code标签，加复制按钮鸭！(行内代码除外)
+        var codes = document.getElementsByTagName('code');
+        if (codes.length) {
+            for (var i = 0; i < codes.length; i++) {
+                //高度/行高=文本行数
+                // var rowNum=Math.round(codes[i].height()/parseFloat(codes[i].css('line-height')));
+                // console.log("当前有"+rowNum+"行");
+                var code_id = "code_id_" + i;
+                codes[i].setAttribute("id", code_id);
+                var ci = "#" + code_id;
+                var codedot = $(ci);
+                var rowNum = Math.round(codedot.height() / parseFloat(codedot.css('line-height')));
+                if (rowNum <= 1) continue;
+                var btn = document.createElement("button");
+                btn.setAttribute("class", "copybt");
+                btn.setAttribute("data-clipboard-target", "#" + code_id);
+                btn.innerHTML = '复制代码';
+                codes[i].parentNode.insertBefore(btn, codes[i]);
+            }
+        };
+        var cop = new ClipboardJS('.copybt');
+        var codeCopyText = $("#codeCopyText").html();
+        cop.on('success', function (e) {
+            alert(codeCopyText);
+            e.clearSelection();
+        });
+        cop.on('error', function (e) {
+            alert("矮油，复制失败了...手动复制吧勇士！");
+            e.clearSelection();
+        });
     </script>
-  </body>
-</html>
+    
+<script>
+$(function () {
+    $('.toggleContainer').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});
+	$(window).scroll(function() {
+        var st = $(window).scrollTop();
+        if(st > 30){
+            $(".toggleContainer").fadeIn(400);
+        }else{
+            $(".toggleContainer").fadeOut(100);
+        }
+	});
+});
+</script>
+
+<script>
+        var bgchoice=$('#bgchoice').html();
+        var bg = $('#bg');
+        var bgurl = document.getElementById("bgurl").innerHTML;
+        if(bgchoice=='default')
+            for (var i = 0; i < 3; i++)
+                bgurl = bgurl.replace("\\", "/");
+        bg.css("background", "url('" + bgurl + "')");
+</script>
